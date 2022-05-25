@@ -7,7 +7,10 @@ const Home = () => {
   return (
     <>
       <Main />
-      <Row title="Up coming" fetchURL={requests.requestAction} />
+      <Row fetchURL={requests.requestPopular} title="Popular" />
+      <Row fetchURL={requests.requestTopRated} title="TopRated" />
+      <Row fetchURL={requests.requestAction} title="Action" />
+      <Row fetchURL={requests.requestHorror} title="Horror" />
     </>
   );
 };
