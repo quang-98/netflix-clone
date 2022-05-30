@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Row = ({ title, fetchURL, rowID }) => {
+  const navigate = useNavigate();
+
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
