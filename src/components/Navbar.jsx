@@ -1,7 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectUser } from "../features/userSlice";
 
 const Navbar = () => {
+  const user = useSelector(selectUser);
+
+  console.log(user);
+
   return (
     <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
       <Link to="/">

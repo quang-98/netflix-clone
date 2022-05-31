@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Information from "./components/Information";
 import Navbar from "./components/Navbar";
 import { selectUser } from "./features/userSlice";
 import Home from "./pages/Home";
+import Information from "./pages/Information";
 import Login from "./pages/Login";
 
 function App() {

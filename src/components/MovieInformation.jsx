@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-function Information(props) {
+function MovieInformation(props) {
   const location = useLocation();
   const state = location.state;
 
@@ -24,11 +24,7 @@ function Information(props) {
         />
         <div className="absolute w-full top-[20%] p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl font-bold">{state?.title}</h1>
-          <div className="my-4">
-            <button className="border bg-gray-300 text-black border-gray-300 py-2 px-5">
-              Play
-            </button>
-          </div>
+
           <p className="text-gray-400 text-sm">
             Released : {state?.release_date}
           </p>
@@ -41,4 +37,4 @@ function Information(props) {
   );
 }
 
-export default Information;
+export default MovieInformation;
