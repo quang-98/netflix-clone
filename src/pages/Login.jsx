@@ -21,6 +21,7 @@ const Login = () => {
         loggedIn: true,
       })
     );
+    navigate("/");
   };
 
   return (
