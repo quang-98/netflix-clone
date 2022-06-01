@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login, selectUser } from "../features/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const regEx = /.*\S.*/;
 
-    dispatch(
-      login({
-        email: email,
-        password: password,
-        loggedIn: true,
-      })
-    );
-    navigate("/");
+    if (regEx.test(email) && regEx.test(password)) {
+      dispatch(
+        login({
+          email: email,
+          password: password,
+          loggedIn: true,
+        })
+      );
+      navigate("/");
+    } else {
+      alert("Please input Email or password again !");
+    }
   };
 
   return (
@@ -37,31 +43,39 @@ const Login = () => {
           <div className="max-w-[320px] mx-auto py-16">
             <h1 className="text-3xl font-bold">Sign In</h1>
             {error ? <p className="p-3 bg-red-400 my-2">{error}</p> : null}
-            <form
-              onSubmit={(e) => handleSubmit(e)}
-              className="w-full flex flex-col py-4"
-            >
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                className="p-3 my-2 bg-gray-700 rouded"
-                type="email"
-                placeholder="Email"
-                autoComplete="email"
-              />
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                className="p-3 my-2 bg-gray-700 rouded"
-                type="password"
-                placeholder="Password"
-                autoComplete="current-password"
-              />
-              <button
-                type="submit"
-                className="bg-red-600 py-3 my-6 rounded font-bold"
-              >
-                Sign In
-              </button>
-            </form>
+            {user ? (
+              <>
+                <h1 className="text-3xl font-bold">Please Logout</h1>
+              </>
+            ) : (
+              <>
+                <form
+                  onSubmit={(e) => handleSubmit(e)}
+                  className="w-full flex flex-col py-4"
+                >
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="p-3 my-2 bg-gray-700 rouded"
+                    type="email"
+                    placeholder="Email"
+                    autoComplete="email"
+                  />
+                  <input
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="p-3 my-2 bg-gray-700 rouded"
+                    type="password"
+                    placeholder="Password"
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-red-600 py-3 my-6 rounded font-bold"
+                  >
+                    Sign In
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>

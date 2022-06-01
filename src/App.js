@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { selectUser } from "./features/userSlice";
+import { selectUser } from "./features/favoritesSlice";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import Information from "./pages/Information";
 import Login from "./pages/Login";
 
 function App() {
-  const user = useSelector(selectUser);
-  console.log(user);
-
   return (
     <BrowserRouter>
       <Navbar />
@@ -17,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/information/:id" element={<Information />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );

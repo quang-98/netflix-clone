@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeAllFavorite } from "../features/favoritesSlice";
 import { logout, selectUser } from "../features/userSlice";
 
 const Navbar = () => {
@@ -9,9 +10,8 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(removeAllFavorite());
   };
-
-  console.log(user);
 
   return (
     <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
@@ -30,7 +30,10 @@ const Navbar = () => {
           </Link>
         ) : (
           <>
-            <Link to="/login" className=" text-white px-6 py-2  cursor-pointer">
+            <Link
+              to="/favorites"
+              className=" text-white px-6 py-2  cursor-pointer"
+            >
               {user.email}
             </Link>
             <button

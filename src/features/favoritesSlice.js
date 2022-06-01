@@ -10,14 +10,18 @@ export const favoritesSlice = createSlice({
     removeFavorite: (state, action) => {
       state.forEach((item, index, array) => {
         if (item.id === action.payload) {
-          delete array.splice(index, 1)
+          delete array.splice(index, 1);
         }
       });
+    },
+    removeAllFavorite: (state, action) => {
+      state.splice(0, state.length);
     },
   },
 });
 
-export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, removeAllFavorite } =
+  favoritesSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 
