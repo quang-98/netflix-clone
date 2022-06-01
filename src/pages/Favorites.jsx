@@ -7,8 +7,6 @@ import { selectUser } from "../features/favoritesSlice";
 function Favorites() {
   const { favorites } = useSelector((state) => state);
 
-  console.log(favorites);
-
   const slideLeft = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 500;

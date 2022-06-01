@@ -1,17 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import requests from "../Request";
 
 function MovieInformation(props) {
-  const { id } = useParams()
-  // const location = useLocation();
-  // const state = location.state;
-  const { favorites } = useSelector(state => state)
+  const { id } = useParams();
 
-  console.log(favorites)
-  const [state, setMovie] = useState()
-  
+  const [state, setMovie] = useState();
+
   const truncateString = (str, num) => {
     if (str?.length > num) {
       return str.slice(0, num) + "...";
@@ -20,13 +17,11 @@ function MovieInformation(props) {
     }
   };
 
-  const key = "d935e5b2332dc2b6f39636cffcc59771";
-
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US&page=1`).then((response) => {
+    axios.get(requests.requestSingle(id)).then((response) => {
       setMovie(response.data);
     });
-  }, [id])
+  }, [id]);
 
   return (
     <div className="w-full h-[550px] text-white">
