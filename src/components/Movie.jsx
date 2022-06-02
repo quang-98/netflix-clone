@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addFavorite, removeFavorite } from "../features/favoritesSlice";
+import {
+  addFavorite,
+  removeFavorite,
+  selectUser,
+} from "../features/favoritesSlice";
 
 const Movie = ({ item }) => {
   const dispatch = useDispatch();
   const [like, setLike] = useState(false);
+  const user = useSelector(selectUser);
 
   const handleRemoveFavorite = (id) => {
     setLike(false);
@@ -14,8 +19,12 @@ const Movie = ({ item }) => {
   };
 
   const handleAddFavorite = (item) => {
-    setLike(true);
-    dispatch(addFavorite(item));
+    if (user) {
+      setLike(true);
+      dispatch(addFavorite(item));
+    } else {
+      alert("Please Log In to add movies");
+    }
   };
   return (
     <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block relative p-2">

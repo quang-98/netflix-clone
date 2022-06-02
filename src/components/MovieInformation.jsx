@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 import { useParams } from "react-router-dom";
 import requests from "../Request";
 
@@ -24,7 +24,7 @@ function MovieInformation(props) {
   }, [id]);
 
   return (
-    <div className="w-full h-[550px] text-white">
+    <div data-testid="test-1" className="w-full h-[550px] text-white">
       <div className="w-full h-full">
         <div className="absolute w-full h-[550px] bg-gradient-to-r from-black" />
         <img
