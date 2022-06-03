@@ -5,23 +5,32 @@ import { Link } from "react-router-dom";
 import {
   addFavorite,
   removeFavorite,
-  selectUser,
+  selectFavorite,
 } from "../features/favoritesSlice";
 
 const Movie = ({ item }) => {
   const dispatch = useDispatch();
   const [like, setLike] = useState(false);
-  const user = useSelector(selectUser);
+  const user = useSelector(selectFavorite);
+  const { favorites } = useSelector((state) => state);
+  const favoritesId = [];
+
+  favorites.forEach((n) => {
+    favoritesId.push(n.id);
+  });
+  const likeLogic = favoritesId.includes(item.id);
+
+  const handleFavorite = (id) => {};
 
   const handleRemoveFavorite = (id) => {
     setLike(false);
     dispatch(removeFavorite(id));
   };
 
-  const handleAddFavorite = (item) => {
+  const handleAddFavorite = (id) => {
     if (user) {
       setLike(true);
-      dispatch(addFavorite(item));
+      dispatch(addFavorite(id));
     } else {
       alert("Please Log In to add movies");
     }
@@ -42,7 +51,7 @@ const Movie = ({ item }) => {
           {item?.title}
         </Link>
         <p>
-          {like ? (
+          {likeLogic ? (
             <FaHeart
               className="absolute top-4 left-4 text-gray-300"
               onClick={() => handleRemoveFavorite(item?.id)}

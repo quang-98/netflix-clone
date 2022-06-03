@@ -41,9 +41,6 @@ const Main = () => {
             >
               Play
             </Link>
-            <button className="border text-white border-gray-300 ml-4 py-2 px-5">
-              Watch later
-            </button>
           </div>
           <p className="text-gray-400 text-sm">
             Released : {movie?.release_date}
