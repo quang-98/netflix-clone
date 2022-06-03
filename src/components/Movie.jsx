@@ -20,8 +20,6 @@ const Movie = ({ item }) => {
   });
   const likeLogic = favoritesId.includes(item.id);
 
-  const handleFavorite = (id) => {};
-
   const handleRemoveFavorite = (id) => {
     setLike(false);
     dispatch(removeFavorite(id));
